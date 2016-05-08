@@ -27,8 +27,9 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
     private final Length posX;
     private final Length posY;
     private final Length posZ;
+    private final ImageModel imageModel;
 
-    public TiffDataModel(int imageID, int tiffDataID, OMEXMLMetadata md) {
+    public TiffDataModel(int imageID, int tiffDataID, OMEXMLMetadata md, ImageModel imageModel) {
         this.imageID = imageID;
         this.tiffDataID = tiffDataID;
         this.c = md.getTiffDataFirstC(imageID, tiffDataID);
@@ -41,11 +42,17 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
         this.posX = md.getPlanePositionX(imageID, tiffDataID);
         this.posY = md.getPlanePositionY(imageID, tiffDataID);
         this.posZ = md.getPlanePositionZ(imageID, tiffDataID);
+        
+        this.imageModel = imageModel;
     }
 
     @Override
     public String toString() {
         return "TiffData : C = " + c + " | Z = " + z + " | T = " + t;
+    }
+
+    public ImageModel getImageModel() {
+        return imageModel;
     }
 
 }

@@ -34,9 +34,9 @@ public class ImageModel extends GenericModel<TiffDataModel> {
         this.imageID = imageID;
         this.id = md.getImageID(imageID);
         this.name = md.getImageName(imageID);
-        
+
         this.pixelID = md.getPixelsID(imageID);
-        
+
         this.physicalSizeX = md.getPixelsPhysicalSizeX(imageID);
         this.physicalSizeY = md.getPixelsPhysicalSizeY(imageID);
         this.physicalSizeZ = md.getPixelsPhysicalSizeZ(imageID);
@@ -51,6 +51,54 @@ public class ImageModel extends GenericModel<TiffDataModel> {
     @Override
     public String toString() {
         return "Image : " + name;
+    }
+
+    public String getImageID() {
+        return Integer.toString(imageID);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getPixelID() {
+        return pixelID;
+    }
+
+    public Length getPhysicalSizeX() {
+        return physicalSizeX;
+    }
+
+    public Length getPhysicalSizeY() {
+        return physicalSizeY;
+    }
+
+    public Length getPhysicalSizeZ() {
+        return physicalSizeZ;
+    }
+
+    public Time getTimeIncrement() {
+        return timeIncrement;
+    }
+
+    public PositiveInteger getSizeC() {
+        return sizeC;
+    }
+
+    public PositiveInteger getSizeT() {
+        return sizeT;
+    }
+
+    public PositiveInteger getSizeX() {
+        return sizeX;
+    }
+
+    public PositiveInteger getSizeY() {
+        return sizeY;
+    }
+
+    public PositiveInteger getSizeZ() {
+        return sizeZ;
     }
 
 }

@@ -47,12 +47,12 @@
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="308.0" prefWidth="328.0">
                                        <children>
                                           <Label layoutX="14.0" layoutY="14.0" text="Image" />
-                                          <HBox layoutY="39.0" prefHeight="144.0" prefWidth="437.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="39.0">
+                                          <HBox layoutX="11.0" layoutY="39.0" prefHeight="138.0" prefWidth="417.0" AnchorPane.bottomAnchor="6.0" AnchorPane.leftAnchor="11.0" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="39.0">
                                              <children>
                                                 <GridPane fx:id="imagePaneLeft">
                                                   <columnConstraints>
-                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="102.0" />
-                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="133.0" minWidth="10.0" prefWidth="98.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="107.0" minWidth="10.0" prefWidth="51.0" />
+                                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="10.0" prefWidth="140.0" />
                                                   </columnConstraints>
                                                   <rowConstraints>
                                                       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -61,6 +61,12 @@
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                                                   </rowConstraints>
+                                                   <children>
+                                                      <Label text="ID" />
+                                                      <Label fx:id="idLabel" GridPane.columnIndex="1" />
+                                                      <Label text="Name" GridPane.rowIndex="1" />
+                                                      <Label fx:id="nameLabel" wrapText="true" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                   </children>
                                                 </GridPane>
                                                 <GridPane fx:id="imagePaneRight" prefHeight="145.0" prefWidth="235.0">
                                                    <columnConstraints>

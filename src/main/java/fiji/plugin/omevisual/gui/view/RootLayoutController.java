@@ -32,6 +32,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import loci.formats.ome.OMEXMLMetadata;
@@ -55,6 +56,12 @@ public class RootLayoutController implements Initializable {
     @FXML
     private CheckBox syncWithImageBox;
 
+    @FXML
+    private Label idLabel;
+
+    @FXML
+    private Label nameLabel;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
     }
@@ -76,7 +83,7 @@ public class RootLayoutController implements Initializable {
             root.getChildren().add(imageItem);
 
             for (int j = 0; j < md.getTiffDataCount(i); j++) {
-                TiffDataModel dataModel = new TiffDataModel(i, j, md);
+                TiffDataModel dataModel = new TiffDataModel(i, j, md, imageModel);
                 //md.getTiffDataFirstC(i, j),
                 //      md.getTiffDataFirstT(i, j), md.getTiffDataFirstZ(i, j), md.getTiffDataIFD(i, j));
                 TreeItem<GenericModel<?>> dataItem = new TreeItem<>(dataModel);
@@ -93,10 +100,12 @@ public class RootLayoutController implements Initializable {
 
             if (model instanceof TiffDataModel) {
                 // Display informations relative to TiffData
+                populateTiffDataInformations((TiffDataModel) model);
             }
 
             if (model instanceof ImageModel) {
                 // Display informations relative to Image
+                populateImageInformations((ImageModel) model);
             }
 
             if (syncWithImageBox.isSelected()) {
@@ -106,6 +115,19 @@ public class RootLayoutController implements Initializable {
                 }
             }
         });
+
+    }
+
+    private void populateImageInformations(ImageModel model) {
+        this.idLabel.setText(model.getImageID());
+        this.nameLabel.setText(model.getName());
+    }
+
+    private void populateTiffDataInformations(TiffDataModel model) {
+        ImageModel imageModel = model.getImageModel();
+        this.populateImageInformations(imageModel);
+        
+        // Populate tiffData
 
     }
 }
