@@ -51,7 +51,7 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Separator>
-                                                <TableView fx:id="imageTable">
+                                                <TableView fx:id="imageTable" VBox.vgrow="ALWAYS">
                                                   <columns>
                                                     <TableColumn fx:id="imageNameColumn" editable="false" prefWidth="207.0" sortable="false" text="Name" />
                                                     <TableColumn fx:id="imageValueColumn" editable="false" prefWidth="211.0" sortable="false" text="Value" />
@@ -74,7 +74,7 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Separator>
-                                                <TableView fx:id="tiffDataTable">
+                                                <TableView fx:id="tiffDataTable" VBox.vgrow="ALWAYS">
                                                    <columns>
                                                       <TableColumn fx:id="tiffDataNameColumn" editable="false" prefWidth="207.0" sortable="false" text="Name" />
                                                       <TableColumn fx:id="tiffDataValueColumn" editable="false" prefWidth="211.0" sortable="false" text="Value" />

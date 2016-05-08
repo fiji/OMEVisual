@@ -28,7 +28,6 @@ import fiji.plugin.omevisual.gui.model.GenericModel;
 import fiji.plugin.omevisual.gui.model.ImageModel;
 import fiji.plugin.omevisual.gui.model.TiffDataModel;
 import java.net.URL;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -167,7 +166,7 @@ public class RootLayoutController implements Initializable {
         });
 
         this.imageValueColumn.setCellValueFactory(data -> {
-            return new ReadOnlyStringWrapper(data.getValue().get(0));
+            return new ReadOnlyStringWrapper(data.getValue().get(1));
         });
 
         for (List<String> row : model.getInformationsRow()) {
@@ -188,7 +187,7 @@ public class RootLayoutController implements Initializable {
         });
 
         this.tiffDataValueColumn.setCellValueFactory(data -> {
-            return new ReadOnlyStringWrapper(data.getValue().get(0));
+            return new ReadOnlyStringWrapper(data.getValue().get(1));
         });
 
         for (List<String> row : model.getInformationsRow()) {

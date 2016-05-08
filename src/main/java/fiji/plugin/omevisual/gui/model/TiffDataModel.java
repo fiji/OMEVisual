@@ -12,10 +12,7 @@ import java.util.List;
 import java.util.Map;
 import loci.formats.ome.OMEXMLMetadata;
 import net.imagej.axis.Axes;
-import net.imagej.axis.Axis;
 import net.imagej.axis.AxisType;
-import ome.units.quantity.Length;
-import ome.units.quantity.Time;
 import ome.xml.model.primitives.NonNegativeInteger;
 
 /**
@@ -30,12 +27,15 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
     private final NonNegativeInteger z;
     private final NonNegativeInteger t;
     private final NonNegativeInteger ifd;
+    private final String filename;
+    private final String uuid;
 
-    private final Time dt;
-    private final Time exposureTime;
-    private final Length posX;
-    private final Length posY;
-    private final Length posZ;
+    private final float dt;
+    private final float exposureTime;
+    private final float posX;
+    private final float posY;
+    private final float posZ;
+
     private final ImageModel imageModel;
 
     public TiffDataModel(int imageID, int tiffDataID, OMEXMLMetadata md, ImageModel imageModel) {
@@ -45,19 +45,21 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
         this.z = md.getTiffDataFirstZ(imageID, tiffDataID);
         this.t = md.getTiffDataFirstT(imageID, tiffDataID);
         this.ifd = md.getTiffDataIFD(imageID, tiffDataID);
+        this.filename = md.getUUIDFileName(imageID, tiffDataID);
+        this.uuid = md.getUUIDValue(imageID, tiffDataID);
 
         if (tiffDataID < md.getPlaneCount(imageID)) {
-            this.dt = md.getPlaneDeltaT(imageID, tiffDataID);
-            this.exposureTime = md.getPlaneExposureTime(imageID, tiffDataID);
-            this.posX = md.getPlanePositionX(imageID, tiffDataID);
-            this.posY = md.getPlanePositionY(imageID, tiffDataID);
-            this.posZ = md.getPlanePositionZ(imageID, tiffDataID);
+            this.dt = md.getPlaneDeltaT(imageID, tiffDataID).value().floatValue();
+            this.exposureTime = md.getPlaneExposureTime(imageID, tiffDataID).value().floatValue();
+            this.posX = md.getPlanePositionX(imageID, tiffDataID).value().floatValue();
+            this.posY = md.getPlanePositionY(imageID, tiffDataID).value().floatValue();
+            this.posZ = md.getPlanePositionZ(imageID, tiffDataID).value().floatValue();
         } else {
-            this.dt = null;
-            this.exposureTime = null;
-            this.posX = null;
-            this.posY = null;
-            this.posZ = null;
+            this.dt = -1;
+            this.exposureTime = -1;
+            this.posX = -1;
+            this.posY = -1;
+            this.posZ = -1;
         }
 
         this.imageModel = imageModel;
@@ -75,8 +77,47 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
     @Override
     public Iterable<List<String>> getInformationsRow() {
         List<List<String>> rows = new ArrayList<>();
-        rows.add(Arrays.asList("String A", "String B"));
-        rows.add(Arrays.asList("String A", "String B"));
+
+        rows.add(Arrays.asList("TiffData ID", Integer.toString(this.tiffDataID)));
+        rows.add(Arrays.asList("IFD", this.ifd.toString()));
+
+        rows.add(Arrays.asList("C position", this.c.toString()));
+        rows.add(Arrays.asList("Z position", this.z.toString()));
+        rows.add(Arrays.asList("T position", this.t.toString()));
+
+        if (this.dt >= 0) {
+            rows.add(Arrays.asList("dt", this.dt + " ms"));
+        } else {
+            rows.add(Arrays.asList("dt", ""));
+        }
+
+        if (this.exposureTime >= 0) {
+            rows.add(Arrays.asList("Exposure time", this.exposureTime + " ms"));
+        } else {
+            rows.add(Arrays.asList("Exposure time", ""));
+        }
+
+        if (this.posX >= 0) {
+            rows.add(Arrays.asList("Position X", this.posX + " µm"));
+        } else {
+            rows.add(Arrays.asList("Position X", ""));
+        }
+
+        if (this.posY >= 0) {
+            rows.add(Arrays.asList("Position Y", this.posY + " µm"));
+        } else {
+            rows.add(Arrays.asList("Position Y", ""));
+        }
+
+        if (this.posZ >= 0) {
+            rows.add(Arrays.asList("Position Z", this.posZ + " µm"));
+        } else {
+            rows.add(Arrays.asList("Position Z", ""));
+        }
+
+        rows.add(Arrays.asList("Filename", this.filename));
+        rows.add(Arrays.asList("UUID", this.uuid));
+
         return rows;
     }
 

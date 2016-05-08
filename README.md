@@ -2,7 +2,7 @@
 
 `OMEVisual` is a Fiji plugin to easily visualize OME metadata.
 
-More details can be found on the wiki : http://imagej.net/OMEVisual
+See also the Wiki page : http://imagej.net/OMEVisual
 
 Please note that :
 
@@ -14,6 +14,8 @@ Please note that :
 - Any ideas to improve the visualization and/or add OME features is very welcome :
     - The best way is to submit a PR.
     - You can also open an issue and post an OME-TIFF file which contains additional OME features you would like to see added to the plugin.
+
+![OMEVisual Screenshot](screenshot.png)
 
 ## Authors
 
