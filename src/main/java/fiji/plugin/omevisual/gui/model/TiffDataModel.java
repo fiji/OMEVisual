@@ -5,6 +5,9 @@
  */
 package fiji.plugin.omevisual.gui.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import loci.formats.ome.OMEXMLMetadata;
 import ome.units.quantity.Length;
 import ome.units.quantity.Time;
@@ -62,6 +65,14 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
 
     public ImageModel getImageModel() {
         return imageModel;
+    }
+    
+    @Override
+    public Iterable<List<String>> getInformationsRow() {
+        List<List<String>> rows = new ArrayList<>();
+        rows.add(Arrays.asList("String A", "String B"));
+        rows.add(Arrays.asList("String A", "String B"));
+        return rows;
     }
 
 }

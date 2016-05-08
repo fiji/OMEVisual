@@ -27,12 +27,15 @@ import fiji.plugin.omevisual.gui.model.GenericModel;
 import fiji.plugin.omevisual.gui.model.ImageModel;
 import fiji.plugin.omevisual.gui.model.TiffDataModel;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import loci.formats.ome.OMEXMLMetadata;
@@ -57,10 +60,22 @@ public class RootLayoutController implements Initializable {
     private CheckBox syncWithImageBox;
 
     @FXML
-    private Label idLabel;
+    private TableView<List<String>> imageTable;
 
     @FXML
-    private Label nameLabel;
+    private TableColumn<List<String>, String> imageNameColumn;
+
+    @FXML
+    private TableColumn<List<String>, String> imageValueColumn;
+
+    @FXML
+    private TableView<List<String>> tiffDataTable;
+
+    @FXML
+    private TableColumn<List<String>, String> tiffDataNameColumn;
+
+    @FXML
+    private TableColumn<List<String>, String> tiffDataValueColumn;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -94,16 +109,20 @@ public class RootLayoutController implements Initializable {
 
         // Handle selection in the tree
         testTree.getSelectionModel().selectedItemProperty().addListener((ObservableValue obs,
-                Object o, Object newValue) -> {
+                Object oldValue, Object newValue) -> {
             TreeItem<GenericModel<?>> selectedItem = (TreeItem<GenericModel<?>>) newValue;
             GenericModel<?> model = selectedItem.getValue();
 
             if (model instanceof TiffDataModel) {
                 // Display informations relative to TiffData
                 populateTiffDataInformations((TiffDataModel) model);
+                
             }
 
             if (model instanceof ImageModel) {
+                // Clear TiffData informations
+                this.tiffDataTable.getItems().clear();
+                
                 // Display informations relative to Image
                 populateImageInformations((ImageModel) model);
             }
@@ -119,15 +138,40 @@ public class RootLayoutController implements Initializable {
     }
 
     private void populateImageInformations(ImageModel model) {
-        this.idLabel.setText(model.getImageID());
-        this.nameLabel.setText(model.getName());
+
+        this.imageTable.getItems().clear();
+
+        this.imageNameColumn.setCellValueFactory(data -> {
+            return new ReadOnlyStringWrapper(data.getValue().get(0));
+        });
+        
+        this.imageValueColumn.setCellValueFactory(data -> {
+            return new ReadOnlyStringWrapper(data.getValue().get(0));
+        });
+        
+        for(List<String> row: model.getInformationsRow()){
+            this.imageTable.getItems().add(row);
+        }
+
     }
 
     private void populateTiffDataInformations(TiffDataModel model) {
         ImageModel imageModel = model.getImageModel();
         this.populateImageInformations(imageModel);
-        
-        // Populate tiffData
 
+        // Populate tiffData
+        this.tiffDataTable.getItems().clear();
+        
+        this.tiffDataNameColumn.setCellValueFactory(data -> {
+            return new ReadOnlyStringWrapper(data.getValue().get(0));
+        });
+        
+        this.tiffDataValueColumn.setCellValueFactory(data -> {
+            return new ReadOnlyStringWrapper(data.getValue().get(0));
+        });
+        
+        for(List<String> row: model.getInformationsRow()){
+            this.tiffDataTable.getItems().add(row);
+        }
     }
 }

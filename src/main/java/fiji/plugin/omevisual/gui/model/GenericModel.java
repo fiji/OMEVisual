@@ -5,6 +5,8 @@
  */
 package fiji.plugin.omevisual.gui.model;
 
+import java.util.List;
+
 /**
  *
  * @author Hadrien Mary
@@ -14,4 +16,6 @@ public abstract class GenericModel<T extends GenericModel<?>> {
         
     @Override
     public abstract String toString();
+    
+    public abstract Iterable<List<String>> getInformationsRow();
 }

@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiji.plugin.omevisual.gui.view.RootLayoutController">
+<AnchorPane prefHeight="743.0" prefWidth="841.0" xmlns="http://javafx.com/javafx/8.0.65" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiji.plugin.omevisual.gui.view.RootLayoutController">
    <children>
       <VBox layoutX="96.0" prefHeight="728.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -52,10 +51,10 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Separator>
-                                                <TableView>
+                                                <TableView fx:id="imageTable">
                                                   <columns>
-                                                    <TableColumn editable="false" prefWidth="207.0" sortable="false" text="Name" />
-                                                    <TableColumn editable="false" prefWidth="211.0" sortable="false" text="Value" />
+                                                    <TableColumn fx:id="imageNameColumn" editable="false" prefWidth="207.0" sortable="false" text="Name" />
+                                                    <TableColumn fx:id="imageValueColumn" editable="false" prefWidth="211.0" sortable="false" text="Value" />
                                                   </columns>
                                                 </TableView>
                                              </children>
@@ -75,10 +74,10 @@
                                                       <Insets bottom="10.0" top="10.0" />
                                                    </VBox.margin>
                                                 </Separator>
-                                                <TableView>
+                                                <TableView fx:id="tiffDataTable">
                                                    <columns>
-                                                      <TableColumn editable="false" prefWidth="207.0" sortable="false" text="Name" />
-                                                      <TableColumn editable="false" prefWidth="211.0" sortable="false" text="Value" />
+                                                      <TableColumn fx:id="tiffDataNameColumn" editable="false" prefWidth="207.0" sortable="false" text="Name" />
+                                                      <TableColumn fx:id="tiffDataValueColumn" editable="false" prefWidth="211.0" sortable="false" text="Value" />
                                                    </columns>
                                                 </TableView>
                                              </children>

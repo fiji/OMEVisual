@@ -27,11 +27,11 @@ import java.io.IOException;
 import javafx.embed.swing.JFXPanel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.TilePane;
 import javax.swing.JFrame;
 import net.imagej.ImageJ;
 import fiji.plugin.omevisual.gui.view.RootLayoutController;
 import javafx.application.Platform;
+import javafx.scene.layout.AnchorPane;
 import loci.formats.ome.OMEXMLMetadata;
 import net.imagej.display.ImageDisplay;
 import org.scijava.log.LogService;
@@ -83,7 +83,7 @@ public class MainAppFrame extends JFrame {
         try {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainAppFrame.class.getResource("/fiji/plugin/omevisual/gui/view/RootLayout.fxml"));
-            TilePane rootLayout = (TilePane) loader.load();
+            AnchorPane rootLayout = (AnchorPane) loader.load();
 
             // Get the controller and add an ImageJ context to it.
             RootLayoutController controller = loader.getController();
