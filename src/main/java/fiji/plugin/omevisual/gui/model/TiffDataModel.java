@@ -22,6 +22,7 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
     private final NonNegativeInteger z;
     private final NonNegativeInteger t;
     private final NonNegativeInteger ifd;
+
     private final Time dt;
     private final Time exposureTime;
     private final Length posX;
@@ -36,13 +37,21 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
         this.z = md.getTiffDataFirstZ(imageID, tiffDataID);
         this.t = md.getTiffDataFirstT(imageID, tiffDataID);
         this.ifd = md.getTiffDataIFD(imageID, tiffDataID);
-        
-        this.dt = md.getPlaneDeltaT(imageID, tiffDataID);
-        this.exposureTime = md.getPlaneExposureTime(imageID, tiffDataID);
-        this.posX = md.getPlanePositionX(imageID, tiffDataID);
-        this.posY = md.getPlanePositionY(imageID, tiffDataID);
-        this.posZ = md.getPlanePositionZ(imageID, tiffDataID);
-        
+
+        if (tiffDataID < md.getPlaneCount(imageID)) {
+            this.dt = md.getPlaneDeltaT(imageID, tiffDataID);
+            this.exposureTime = md.getPlaneExposureTime(imageID, tiffDataID);
+            this.posX = md.getPlanePositionX(imageID, tiffDataID);
+            this.posY = md.getPlanePositionY(imageID, tiffDataID);
+            this.posZ = md.getPlanePositionZ(imageID, tiffDataID);
+        } else {
+            this.dt = null;
+            this.exposureTime = null;
+            this.posX = null;
+            this.posY = null;
+            this.posZ = null;
+        }
+
         this.imageModel = imageModel;
     }
 
