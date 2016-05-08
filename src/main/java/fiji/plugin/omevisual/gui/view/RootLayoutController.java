@@ -23,11 +23,14 @@
  */
 package fiji.plugin.omevisual.gui.view;
 
+import fiji.plugin.omevisual.OMEUtils;
 import fiji.plugin.omevisual.gui.model.GenericModel;
 import fiji.plugin.omevisual.gui.model.ImageModel;
 import fiji.plugin.omevisual.gui.model.TiffDataModel;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.value.ObservableValue;
@@ -39,7 +42,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TreeItem;
 import javafx.scene.control.TreeView;
 import loci.formats.ome.OMEXMLMetadata;
+import net.imagej.axis.AxisType;
+import net.imagej.display.ImageDisplay;
 import org.scijava.Context;
+import org.scijava.convert.ConvertService;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
 
@@ -52,6 +58,9 @@ public class RootLayoutController implements Initializable {
 
     @Parameter
     private LogService log;
+    
+    @Parameter
+    private ConvertService convert;
 
     @FXML
     private TreeView testTree;
@@ -76,6 +85,7 @@ public class RootLayoutController implements Initializable {
 
     @FXML
     private TableColumn<List<String>, String> tiffDataValueColumn;
+    private ImageDisplay image;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -83,6 +93,16 @@ public class RootLayoutController implements Initializable {
 
     public void setContext(Context context) {
         context.inject(this);
+    }
+
+    /**
+     * Not the best place to put ImageDisplay in the gui package but it's easier for now. I take any
+     * ideas to improve this.
+     *
+     * @param image
+     */
+    public void setImage(ImageDisplay image) {
+        this.image = image;
     }
 
     public void fill(OMEXMLMetadata md) {
@@ -116,13 +136,13 @@ public class RootLayoutController implements Initializable {
             if (model instanceof TiffDataModel) {
                 // Display informations relative to TiffData
                 populateTiffDataInformations((TiffDataModel) model);
-                
+
             }
 
             if (model instanceof ImageModel) {
                 // Clear TiffData informations
                 this.tiffDataTable.getItems().clear();
-                
+
                 // Display informations relative to Image
                 populateImageInformations((ImageModel) model);
             }
@@ -130,7 +150,8 @@ public class RootLayoutController implements Initializable {
             if (syncWithImageBox.isSelected()) {
                 if (model instanceof TiffDataModel) {
                     // Sync the current selected item with image display
-                    log.info("TODO : Sync current TiffData with image display.");
+                    Map<AxisType, Long> positions = ((TiffDataModel) model).getPosition();
+                    OMEUtils.setPosition(this.image, positions, this.convert);
                 }
             }
         });
@@ -144,12 +165,12 @@ public class RootLayoutController implements Initializable {
         this.imageNameColumn.setCellValueFactory(data -> {
             return new ReadOnlyStringWrapper(data.getValue().get(0));
         });
-        
+
         this.imageValueColumn.setCellValueFactory(data -> {
             return new ReadOnlyStringWrapper(data.getValue().get(0));
         });
-        
-        for(List<String> row: model.getInformationsRow()){
+
+        for (List<String> row : model.getInformationsRow()) {
             this.imageTable.getItems().add(row);
         }
 
@@ -161,16 +182,16 @@ public class RootLayoutController implements Initializable {
 
         // Populate tiffData
         this.tiffDataTable.getItems().clear();
-        
+
         this.tiffDataNameColumn.setCellValueFactory(data -> {
             return new ReadOnlyStringWrapper(data.getValue().get(0));
         });
-        
+
         this.tiffDataValueColumn.setCellValueFactory(data -> {
             return new ReadOnlyStringWrapper(data.getValue().get(0));
         });
-        
-        for(List<String> row: model.getInformationsRow()){
+
+        for (List<String> row : model.getInformationsRow()) {
             this.tiffDataTable.getItems().add(row);
         }
     }

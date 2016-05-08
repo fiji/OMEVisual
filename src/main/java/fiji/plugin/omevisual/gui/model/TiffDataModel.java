@@ -7,8 +7,13 @@ package fiji.plugin.omevisual.gui.model;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import loci.formats.ome.OMEXMLMetadata;
+import net.imagej.axis.Axes;
+import net.imagej.axis.Axis;
+import net.imagej.axis.AxisType;
 import ome.units.quantity.Length;
 import ome.units.quantity.Time;
 import ome.xml.model.primitives.NonNegativeInteger;
@@ -66,13 +71,21 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
     public ImageModel getImageModel() {
         return imageModel;
     }
-    
+
     @Override
     public Iterable<List<String>> getInformationsRow() {
         List<List<String>> rows = new ArrayList<>();
         rows.add(Arrays.asList("String A", "String B"));
         rows.add(Arrays.asList("String A", "String B"));
         return rows;
+    }
+
+    public Map<AxisType, Long> getPosition() {
+        Map<AxisType, Long> positions = new HashMap<>();
+        positions.put(Axes.CHANNEL, (Long) this.c.getNumberValue().longValue());
+        positions.put(Axes.TIME, (Long) this.t.getNumberValue().longValue());
+        positions.put(Axes.Z, (Long) this.z.getNumberValue().longValue());
+        return positions;
     }
 
 }

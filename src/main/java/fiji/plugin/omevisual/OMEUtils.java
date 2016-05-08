@@ -5,15 +5,20 @@
  */
 package fiji.plugin.omevisual;
 
+import ij.ImagePlus;
 import io.scif.Metadata;
 import io.scif.filters.AbstractMetadataWrapper;
 import io.scif.img.SCIFIOImgPlus;
-import io.scif.ome.OMEMetadata;
 import io.scif.ome.formats.OMETIFFFormat;
+import java.util.Map;
 import loci.formats.ome.OMEXMLMetadata;
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
 import net.imagej.ImgPlus;
+import net.imagej.axis.Axes;
+import net.imagej.axis.AxisType;
+import net.imagej.display.ImageDisplay;
+import org.scijava.convert.ConvertService;
 import org.scijava.ui.DialogPrompt;
 
 /**
@@ -51,6 +56,29 @@ public class OMEUtils {
         OMEXMLMetadata ome = omeMeta.getOmeMeta().getRoot();
 
         return ome;
+    }
+
+    public static void setPosition(ImageDisplay image, Map<AxisType, Long> positions,
+            ConvertService convert) {
+
+        // Work with IJ2 interface
+        positions.forEach((axis, position) -> {
+            image.setPosition(position, axis);
+        });
+
+        // Hack to make it work with IJ1
+        //ImagePlus imp = convert.convert((Dataset) image.getActiveView().getData(), ImagePlus.class);
+        ImagePlus imp = ij.IJ.getImage();
+
+        if (positions.get(Axes.Z).intValue() >= 0) {
+            imp.setZ(positions.get(Axes.Z).intValue() + 1);
+        }
+        if (positions.get(Axes.CHANNEL).intValue() >= 0) {
+            imp.setC(positions.get(Axes.CHANNEL).intValue() + 1);
+        }
+        if (positions.get(Axes.TIME).intValue() >= 0) {
+            imp.setT(positions.get(Axes.TIME).intValue() + 1);
+        }
     }
 
 }

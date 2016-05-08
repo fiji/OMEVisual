@@ -88,6 +88,7 @@ public class MainAppFrame extends JFrame {
             // Get the controller and add an ImageJ context to it.
             RootLayoutController controller = loader.getController();
             controller.setContext(ij.context());
+            controller.setImage(this.image);
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);

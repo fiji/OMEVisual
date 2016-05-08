@@ -67,6 +67,10 @@ public class OMEVisual implements Command {
 
         OMEXMLMetadata md = OMEUtils.getOMEXMLMetadata(data, ij);
 
+        if (md == null) {
+            return;
+        }
+
         // Launch JavaFX interface
         MainAppFrame app = new MainAppFrame(ij, image, md);
         app.setTitle(PLUGIN_NAME + " version " + VERSION);
