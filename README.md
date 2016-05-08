@@ -17,7 +17,7 @@ Please note that :
 
 ## Authors
 
-`FilamentDetector` has been created by [Hadrien Mary](mailto:hadrien.mary@gmail.com).
+`OMEVisual` has been created by [Hadrien Mary](mailto:hadrien.mary@gmail.com).
 
 This work started in 2016 at the [Gary Brouhard laboratory](http://brouhardlab.mcgill.ca/) at the University of McGill.
 
