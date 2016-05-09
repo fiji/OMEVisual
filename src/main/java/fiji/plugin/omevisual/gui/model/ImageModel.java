@@ -42,10 +42,30 @@ public class ImageModel extends GenericModel<TiffDataModel> {
 
         this.pixelID = md.getPixelsID(imageID);
 
-        this.physicalSizeX = md.getPixelsPhysicalSizeX(imageID).value().floatValue();
-        this.physicalSizeY = md.getPixelsPhysicalSizeY(imageID).value().floatValue();
-        this.physicalSizeZ = md.getPixelsPhysicalSizeZ(imageID).value().floatValue();
-        this.timeIncrement = md.getPixelsTimeIncrement(imageID).value().floatValue();
+        if (md.getPixelsPhysicalSizeX(imageID) != null) {
+            this.physicalSizeX = md.getPixelsPhysicalSizeX(imageID).value().floatValue();
+        } else {
+            this.physicalSizeX = -1;
+        }
+
+        if (md.getPixelsPhysicalSizeY(imageID) != null) {
+            this.physicalSizeY = md.getPixelsPhysicalSizeY(imageID).value().floatValue();
+        } else {
+            this.physicalSizeY = -1;
+        }
+
+        if (md.getPixelsPhysicalSizeZ(imageID) != null) {
+            this.physicalSizeZ = md.getPixelsPhysicalSizeZ(imageID).value().floatValue();
+        } else {
+            this.physicalSizeZ = -1;
+        }
+
+        if (md.getPixelsTimeIncrement(imageID) != null) {
+            this.timeIncrement = md.getPixelsTimeIncrement(imageID).value().floatValue();
+        } else {
+            this.timeIncrement = -1;
+        }
+
         this.sizeC = md.getPixelsSizeC(imageID);
         this.sizeT = md.getPixelsSizeT(imageID);
         this.sizeX = md.getPixelsSizeX(imageID);
@@ -75,17 +95,37 @@ public class ImageModel extends GenericModel<TiffDataModel> {
         rows.add(Arrays.asList("ID", this.id));
         rows.add(Arrays.asList("Pixel ID", this.pixelID));
 
-        rows.add(Arrays.asList("Physical Size X", this.physicalSizeX + " µm"));
-        rows.add(Arrays.asList("Physical Size Y", this.physicalSizeY + " µm"));
-        rows.add(Arrays.asList("Physical Size Z", this.physicalSizeZ + " µm"));
-        rows.add(Arrays.asList("Time Increment", this.timeIncrement + " s"));
+        if (this.physicalSizeX > -1) {
+            rows.add(Arrays.asList("Physical Size X", this.physicalSizeX + " µm"));
+        } else {
+            rows.add(Arrays.asList("Physical Size X", ""));
+        }
+
+        if (this.physicalSizeY > -1) {
+            rows.add(Arrays.asList("Physical Size Y", this.physicalSizeY + " µm"));
+        } else {
+            rows.add(Arrays.asList("Physical Size Y", ""));
+        }
+
+        if (this.physicalSizeZ > -1) {
+            rows.add(Arrays.asList("Physical Size Z", this.physicalSizeZ + " µm"));
+        } else {
+            rows.add(Arrays.asList("Physical Size Z", ""));
+        }
+
+        if (this.timeIncrement > -1) {
+            rows.add(Arrays.asList("Time Increment", this.timeIncrement + " s"));
+        } else {
+            rows.add(Arrays.asList("Time Increment", ""));
+        }
+
         rows.add(Arrays.asList("Size X", this.sizeX.toString()));
         rows.add(Arrays.asList("Size Y", this.sizeY.toString()));
         rows.add(Arrays.asList("Size Z", this.sizeZ.toString()));
         rows.add(Arrays.asList("Size Channel", this.sizeC.toString()));
         rows.add(Arrays.asList("Size Time", this.sizeT.toString()));
 
-        for (int i=0; i < channels.size(); i++) {
+        for (int i = 0; i < channels.size(); i++) {
             Map<String, String> channel = channels.get(i);
             for (Map.Entry<String, String> entry : channel.entrySet()) {
                 rows.add(Arrays.asList("Channel " + Integer.toString(i) + " - " + entry.getKey(),
