@@ -30,11 +30,11 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
     private final String filename;
     private final String uuid;
 
-    private final float dt;
-    private final float exposureTime;
-    private final float posX;
-    private final float posY;
-    private final float posZ;
+    private float dt;
+    private float exposureTime;
+    private float posX;
+    private float posY;
+    private float posZ;
 
     private final ImageModel imageModel;
 
@@ -48,18 +48,28 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
         this.filename = md.getUUIDFileName(imageID, tiffDataID);
         this.uuid = md.getUUIDValue(imageID, tiffDataID);
 
+        this.dt = -1;
+        this.exposureTime = -1;
+        this.posX = -1;
+        this.posY = -1;
+        this.posZ = -1;
+
         if (tiffDataID < md.getPlaneCount(imageID)) {
-            this.dt = md.getPlaneDeltaT(imageID, tiffDataID).value().floatValue();
-            this.exposureTime = md.getPlaneExposureTime(imageID, tiffDataID).value().floatValue();
-            this.posX = md.getPlanePositionX(imageID, tiffDataID).value().floatValue();
-            this.posY = md.getPlanePositionY(imageID, tiffDataID).value().floatValue();
-            this.posZ = md.getPlanePositionZ(imageID, tiffDataID).value().floatValue();
-        } else {
-            this.dt = -1;
-            this.exposureTime = -1;
-            this.posX = -1;
-            this.posY = -1;
-            this.posZ = -1;
+            if (md.getPlaneDeltaT(imageID, tiffDataID) != null) {
+                this.dt = md.getPlaneDeltaT(imageID, tiffDataID).value().floatValue();
+            }
+            if (md.getPlaneExposureTime(imageID, tiffDataID) != null) {
+                this.exposureTime = md.getPlaneExposureTime(imageID, tiffDataID).value().floatValue();
+            }
+            if (md.getPlanePositionX(imageID, tiffDataID) != null) {
+                this.posX = md.getPlanePositionX(imageID, tiffDataID).value().floatValue();
+            }
+            if (md.getPlanePositionY(imageID, tiffDataID) != null) {
+                this.posY = md.getPlanePositionY(imageID, tiffDataID).value().floatValue();
+            }
+            if (md.getPlanePositionZ(imageID, tiffDataID) != null) {
+                this.posZ = md.getPlanePositionZ(imageID, tiffDataID).value().floatValue();
+            }
         }
 
         this.imageModel = imageModel;
