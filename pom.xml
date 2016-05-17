@@ -13,7 +13,7 @@
     </parent>
 
     <artifactId>OMEVisual</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3-SNAPSHOT</version>
 
     <name>OMEVisual</name>
     <description>A Fiji plugin to easily visualize OME metadata.</description>
