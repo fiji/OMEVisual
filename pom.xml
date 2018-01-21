@@ -11,7 +11,7 @@
 	</parent>
 
 	<artifactId>OMEVisual</artifactId>
-	<version>1.1.1-SNAPSHOT</version>
+	<version>1.1.1</version>
 
 	<name>OMEVisual</name>
 	<description>A Fiji plugin to easily visualize OME metadata.</description>
@@ -58,7 +58,7 @@
 	<scm>
 		<connection>scm:git:git://github.com/hadim/OMEVisual</connection>
 		<developerConnection>scm:git:git@github.com:hadim/OMEVisual</developerConnection>
-		<tag>HEAD</tag>
+		<tag>OMEVisual-1.1.1</tag>
 		<url>https://github.com/hadim/OMEVisual</url>
 	</scm>
 
