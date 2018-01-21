@@ -65,10 +65,7 @@ public class OMEUtils {
 			image.setPosition(position, axis);
 		});
 
-		// Hack to make it work with IJ1
-		// ImagePlus imp = convert.convert((Dataset) image.getActiveView().getData(),
-		// ImagePlus.class);
-		ImagePlus imp = ij.IJ.getImage();
+		ImagePlus imp = convert.convert(image, ImagePlus.class);
 
 		if (positions.get(Axes.Z).intValue() >= 0) {
 			imp.setZ(positions.get(Axes.Z).intValue() + 1);
