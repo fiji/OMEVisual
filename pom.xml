@@ -133,4 +133,5 @@
 		</repository>
 	</repositories>
 
+	<groupId>sc.fiji</groupId>
 </project>
