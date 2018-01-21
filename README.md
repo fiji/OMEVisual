@@ -1,3 +1,5 @@
+[![](https://travis-ci.org/hadim/OMEVisual.svg?branch=master)](https://travis-ci.org/hadim/OMEVisual)
+
 # OMEVisual
 
 `OMEVisual` is a Fiji plugin to easily visualize OME metadata.
