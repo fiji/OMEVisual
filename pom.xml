@@ -69,6 +69,10 @@
 
 		<!-- NB: Deploy releases to the SciJava Maven repository. -->
 		<releaseProfiles>deploy-to-scijava</releaseProfiles>
+
+		<scijava.jvm.version>11</scijava.jvm.version>
+		<scijava.jvm.build.version>11</scijava.jvm.build.version>
+		<javafx.version>11.0.2</javafx.version>
 	</properties>
 
 	<mailingLists>
@@ -89,6 +93,17 @@
 	</issueManagement>
 
 	<dependencies>
+		<!-- JavaFX dependencies -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-swing</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
 
 		<!--ImageJ -->
 		<dependency>
