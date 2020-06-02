@@ -24,15 +24,18 @@
 
 package sc.fiji.omevisual;
 
+import io.scif.services.TranslatorService;
+
+import net.imagej.Dataset;
+import net.imagej.ImageJ;
+import net.imagej.display.ImageDisplay;
+
 import org.scijava.command.Command;
 import org.scijava.log.LogService;
 import org.scijava.plugin.Parameter;
 import org.scijava.plugin.Plugin;
 
 import loci.formats.ome.OMEXMLMetadata;
-import net.imagej.Dataset;
-import net.imagej.ImageJ;
-import net.imagej.display.ImageDisplay;
 import sc.fiji.omevisual.gui.MainAppFrame;
 
 @Plugin(type = Command.class,
@@ -44,6 +47,9 @@ public class OMEVisual implements Command {
 
 	@Parameter
 	private LogService log;
+
+	@Parameter
+	private TranslatorService translatorService;
 
 	@Parameter
 	private ImageDisplay image;
@@ -67,7 +73,7 @@ public class OMEVisual implements Command {
 
 		Dataset data = (Dataset) image.getActiveView().getData();
 
-		OMEXMLMetadata md = OMEUtils.getOMEXMLMetadata(data, ij);
+		OMEXMLMetadata md = OMEUtils.getOMEXMLMetadata(data, ij, translatorService);
 
 		if (md == null) {
 			return;
