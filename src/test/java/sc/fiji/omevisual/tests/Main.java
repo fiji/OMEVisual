@@ -1,3 +1,4 @@
+
 package sc.fiji.omevisual.tests;
 
 import java.io.IOException;
@@ -24,7 +25,9 @@ public class Main {
 
 		// Open image
 		String fpath;
-		fpath = Main.class.getResource("/sc/fiji/omevisual/tests/testdata/multi-channel-4D-series.ome.tif").getPath();
+		fpath = Main.class.getResource(
+			"/sc/fiji/omevisual/tests/testdata/multi-channel-4D-series.ome.tif")
+			.getPath();
 
 		DatasetIOService io = ij.context().getService(DatasetIOService.class);
 		Dataset ds = io.open(fpath);

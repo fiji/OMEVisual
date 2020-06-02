@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package sc.fiji.omevisual.gui.model;
 
 import java.util.ArrayList;
@@ -15,7 +16,6 @@ import loci.formats.ome.OMEXMLMetadata;
 import ome.xml.model.primitives.PositiveInteger;
 
 /**
- *
  * @author Hadrien Mary
  */
 public class ImageModel extends GenericModel<TiffDataModel> {
@@ -44,26 +44,34 @@ public class ImageModel extends GenericModel<TiffDataModel> {
 		this.pixelID = md.getPixelsID(imageID);
 
 		if (md.getPixelsPhysicalSizeX(imageID) != null) {
-			this.physicalSizeX = md.getPixelsPhysicalSizeX(imageID).value().floatValue();
-		} else {
+			this.physicalSizeX = md.getPixelsPhysicalSizeX(imageID).value()
+				.floatValue();
+		}
+		else {
 			this.physicalSizeX = -1;
 		}
 
 		if (md.getPixelsPhysicalSizeY(imageID) != null) {
-			this.physicalSizeY = md.getPixelsPhysicalSizeY(imageID).value().floatValue();
-		} else {
+			this.physicalSizeY = md.getPixelsPhysicalSizeY(imageID).value()
+				.floatValue();
+		}
+		else {
 			this.physicalSizeY = -1;
 		}
 
 		if (md.getPixelsPhysicalSizeZ(imageID) != null) {
-			this.physicalSizeZ = md.getPixelsPhysicalSizeZ(imageID).value().floatValue();
-		} else {
+			this.physicalSizeZ = md.getPixelsPhysicalSizeZ(imageID).value()
+				.floatValue();
+		}
+		else {
 			this.physicalSizeZ = -1;
 		}
 
 		if (md.getPixelsTimeIncrement(imageID) != null) {
-			this.timeIncrement = md.getPixelsTimeIncrement(imageID).value().floatValue();
-		} else {
+			this.timeIncrement = md.getPixelsTimeIncrement(imageID).value()
+				.floatValue();
+		}
+		else {
 			this.timeIncrement = -1;
 		}
 
@@ -98,25 +106,29 @@ public class ImageModel extends GenericModel<TiffDataModel> {
 
 		if (this.physicalSizeX > -1) {
 			rows.add(Arrays.asList("Physical Size X", this.physicalSizeX + " µm"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("Physical Size X", ""));
 		}
 
 		if (this.physicalSizeY > -1) {
 			rows.add(Arrays.asList("Physical Size Y", this.physicalSizeY + " µm"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("Physical Size Y", ""));
 		}
 
 		if (this.physicalSizeZ > -1) {
 			rows.add(Arrays.asList("Physical Size Z", this.physicalSizeZ + " µm"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("Physical Size Z", ""));
 		}
 
 		if (this.timeIncrement > -1) {
 			rows.add(Arrays.asList("Time Increment", this.timeIncrement + " s"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("Time Increment", ""));
 		}
 
@@ -129,7 +141,8 @@ public class ImageModel extends GenericModel<TiffDataModel> {
 		for (int i = 0; i < channels.size(); i++) {
 			Map<String, String> channel = channels.get(i);
 			for (Map.Entry<String, String> entry : channel.entrySet()) {
-				rows.add(Arrays.asList("Channel " + Integer.toString(i) + " - " + entry.getKey(), entry.getValue()));
+				rows.add(Arrays.asList("Channel " + Integer.toString(i) + " - " + entry
+					.getKey(), entry.getValue()));
 			}
 		}
 

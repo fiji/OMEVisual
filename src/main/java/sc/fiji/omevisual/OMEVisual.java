@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package sc.fiji.omevisual;
 
 import org.scijava.command.Command;
@@ -34,7 +35,8 @@ import net.imagej.ImageJ;
 import net.imagej.display.ImageDisplay;
 import sc.fiji.omevisual.gui.MainAppFrame;
 
-@Plugin(type = Command.class, menuPath = "Plugins>Utilities>Visualize OME Metadata")
+@Plugin(type = Command.class,
+	menuPath = "Plugins>Utilities>Visualize OME Metadata")
 public class OMEVisual implements Command {
 
 	@Parameter

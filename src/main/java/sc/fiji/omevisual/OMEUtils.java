@@ -34,13 +34,15 @@ public class OMEUtils {
 		ImgPlus<?> imp = data.getImgPlus();
 
 		if (!(imp instanceof SCIFIOImgPlus)) {
-			ij.ui().showDialog("This image has not been opened with SCIFIO.", DialogPrompt.MessageType.ERROR_MESSAGE);
+			ij.ui().showDialog("This image has not been opened with SCIFIO.",
+				DialogPrompt.MessageType.ERROR_MESSAGE);
 			return null;
 		}
 
 		SCIFIOImgPlus<?> sciImp = (SCIFIOImgPlus<?>) imp;
 		Metadata metadata = sciImp.getMetadata();
 
+		// First try translating the given metadata to
 		// Why the fuck this is needed ?
 		while ((metadata instanceof AbstractMetadataWrapper)) {
 			metadata = ((AbstractMetadataWrapper) metadata).unwrap();
@@ -48,7 +50,8 @@ public class OMEUtils {
 
 		// Check if metadata are OME or not
 		if (!(metadata instanceof OMETIFFFormat.Metadata)) {
-			ij.ui().showDialog("This file does not contain OME metadata", DialogPrompt.MessageType.ERROR_MESSAGE);
+			ij.ui().showDialog("This file does not contain OME metadata",
+				DialogPrompt.MessageType.ERROR_MESSAGE);
 			return null;
 		}
 
@@ -58,7 +61,9 @@ public class OMEUtils {
 		return ome;
 	}
 
-	public static void setPosition(ImageDisplay image, Map<AxisType, Long> positions, ConvertService convert) {
+	public static void setPosition(ImageDisplay image,
+		Map<AxisType, Long> positions, ConvertService convert)
+	{
 
 		// Work with IJ2 interface
 		positions.forEach((axis, position) -> {
