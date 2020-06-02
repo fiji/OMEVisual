@@ -1,11 +1,14 @@
 
 package sc.fiji.omevisual.tests;
 
+import io.scif.config.SCIFIOConfig;
+import io.scif.services.DatasetIOService;
+
 import java.io.IOException;
 
-import io.scif.services.DatasetIOService;
 import net.imagej.Dataset;
 import net.imagej.ImageJ;
+
 import sc.fiji.omevisual.OMEVisual;
 
 public class Main {
@@ -30,7 +33,7 @@ public class Main {
 			.getPath();
 
 		DatasetIOService io = ij.context().getService(DatasetIOService.class);
-		Dataset ds = io.open(fpath);
+		Dataset ds = io.open(fpath, new SCIFIOConfig().checkerSetOpen(true));
 		ij.display().createDisplay(ds);
 
 		ij.log().info("Load filaments.tif data.");
