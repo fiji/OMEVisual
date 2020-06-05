@@ -20,13 +20,13 @@
 
 	<organization>
 		<name>Fiji</name>
-		<url>http://fiji.sc/</url>
+		<url>https://fiji.sc/</url>
 	</organization>
 
 	<licenses>
 		<license>
 			<name>MIT License</name>
-			<url>http://choosealicense.com/licenses/mit/</url>
+			<url>https://choosealicense.com/licenses/mit/</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
