@@ -43,13 +43,21 @@
 				<role>support</role>
 				<role>maintainer</role>
 			</roles>
-			<timezone>-5</timezone>
+		</developer>
+		<developer>
+			<id>ctrueden</id>
+			<name>Curtis Rueden</name>
+			<url>https://imagej.net/User:Rueden</url>
+			<roles>
+				<role>maintainer</role>
+			</roles>
 		</developer>
 	</developers>
 	<contributors>
-		<!-- NB: Need a least one element to override the parent. See: https://issues.apache.org/jira/browse/MNG-5220 -->
 		<contributor>
-			<name>None</name>
+			<name>Mark Hiner</name>
+			<url>https://imagej.net/User:Hinerm</url>
+			<properties><id>hinerm</id></properties>
 		</contributor>
 	</contributors>
 
