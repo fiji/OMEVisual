@@ -15,7 +15,7 @@
 
 	<name>OMEVisual</name>
 	<description>A Fiji plugin to easily visualize OME metadata.</description>
-	<url>https://github.com/hadim/OMEVisual</url>
+	<url>https://github.com/fiji/OMEVisual</url>
 	<inceptionYear>2016</inceptionYear>
 	<organization>
 		<name>Fiji</name>
@@ -61,18 +61,18 @@
 	</mailingLists>
 
 	<scm>
-		<connection>scm:git:git://github.com/hadim/OMEVisual</connection>
-		<developerConnection>scm:git:git@github.com:hadim/OMEVisual</developerConnection>
+		<connection>scm:git:git://github.com/fiji/OMEVisual</connection>
+		<developerConnection>scm:git:git@github.com:fiji/OMEVisual</developerConnection>
 		<tag>HEAD</tag>
-		<url>https://github.com/hadim/OMEVisual</url>
+		<url>https://github.com/fiji/OMEVisual</url>
 	</scm>
 	<issueManagement>
 		<system>GitHub Issues</system>
-		<url>https://github.com/hadim/OMEVisual/issues</url>
+		<url>https://github.com/fiji/OMEVisual/issues</url>
 	</issueManagement>
 	<ciManagement>
 		<system>Travis CI</system>
-		<url>https://travis-ci.org/hadim/OMEVisual</url>
+		<url>https://travis-ci.com/fiji/OMEVisual</url>
 	</ciManagement>
 
 	<properties>

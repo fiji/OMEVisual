@@ -1,4 +1,4 @@
-[![](https://travis-ci.org/hadim/OMEVisual.svg?branch=master)](https://travis-ci.org/hadim/OMEVisual)
+[![](https://travis-ci.com/fiji/OMEVisual.svg?branch=master)](https://travis-ci.com/fiji/OMEVisual)
 
 # OMEVisual
 
