@@ -115,6 +115,17 @@
 			<artifactId>scifio-ome-xml</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>io.scif</groupId>
+			<artifactId>scifio-bf-compat</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>ome</groupId>
+			<artifactId>bio-formats_plugins</artifactId>
+			<scope>test</scope>
+		</dependency>
+
 		<!-- Enable IJ1 interface at runtime -->
 		<dependency>
 			<groupId>net.imagej</groupId>
@@ -122,6 +133,7 @@
 			<scope>runtime</scope>
 			<optional>true</optional>
 		</dependency>
+
 
 	</dependencies>
 

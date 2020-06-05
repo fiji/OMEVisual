@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package sc.fiji.omevisual.gui;
 
 import java.io.IOException;
@@ -64,15 +65,18 @@ public class MainAppFrame extends JFrame {
 	}
 
 	/**
-	 * Create the JFXPanel that make the link between Swing (IJ) and JavaFX plugin.
+	 * Create the JFXPanel that make the link between Swing (IJ) and JavaFX
+	 * plugin.
 	 */
 	public void init() {
 		this.fxPanel = new JFXPanel();
 		this.add(this.fxPanel);
 		this.setVisible(true);
 
-		// The call to runLater() avoid a mix between JavaFX thread and Swing thread.
+		// The call to runLater() avoid a mix between JavaFX thread and Swing
+		// thread.
 		Platform.runLater(new Runnable() {
+
 			@Override
 			public void run() {
 				initFX(fxPanel);
@@ -85,7 +89,8 @@ public class MainAppFrame extends JFrame {
 		// Init the root layout
 		try {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(MainAppFrame.class.getResource("/sc/fiji/omevisual/gui/view/RootLayout.fxml"));
+			loader.setLocation(MainAppFrame.class.getResource(
+				"/sc/fiji/omevisual/gui/view/RootLayout.fxml"));
 			AnchorPane rootLayout = (AnchorPane) loader.load();
 
 			// Get the controller and add an ImageJ context to it.
@@ -102,7 +107,8 @@ public class MainAppFrame extends JFrame {
 
 			controller.fill(md);
 
-		} catch (IOException e) {
+		}
+		catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

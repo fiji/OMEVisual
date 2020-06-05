@@ -21,6 +21,7 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
+
 package sc.fiji.omevisual.gui.view;
 
 import java.net.URL;
@@ -89,16 +90,15 @@ public class RootLayoutController implements Initializable {
 	private ImageDisplay image;
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-	}
+	public void initialize(URL location, ResourceBundle resources) {}
 
 	public void setContext(Context context) {
 		context.inject(this);
 	}
 
 	/**
-	 * Not the best place to put ImageDisplay in the gui package but it's easier for
-	 * now. I take any ideas to improve this.
+	 * Not the best place to put ImageDisplay in the gui package but it's easier
+	 * for now. I take any ideas to improve this.
 	 *
 	 * @param image
 	 */
@@ -121,7 +121,8 @@ public class RootLayoutController implements Initializable {
 			for (int j = 0; j < md.getTiffDataCount(i); j++) {
 				TiffDataModel dataModel = new TiffDataModel(i, j, md, imageModel);
 				// md.getTiffDataFirstC(i, j),
-				// md.getTiffDataFirstT(i, j), md.getTiffDataFirstZ(i, j), md.getTiffDataIFD(i,
+				// md.getTiffDataFirstT(i, j), md.getTiffDataFirstZ(i, j),
+				// md.getTiffDataIFD(i,
 				// j));
 				TreeItem<GenericModel<?>> dataItem = new TreeItem<>(dataModel);
 				imageItem.getChildren().add(dataItem);
@@ -130,33 +131,34 @@ public class RootLayoutController implements Initializable {
 		}
 
 		// Handle selection in the tree
-		testTree.getSelectionModel().selectedItemProperty()
-				.addListener((ObservableValue obs, Object oldValue, Object newValue) -> {
-					TreeItem<GenericModel<?>> selectedItem = (TreeItem<GenericModel<?>>) newValue;
-					GenericModel<?> model = selectedItem.getValue();
+		testTree.getSelectionModel().selectedItemProperty().addListener((
+			ObservableValue obs, Object oldValue, Object newValue) -> {
+			TreeItem<GenericModel<?>> selectedItem =
+				(TreeItem<GenericModel<?>>) newValue;
+			GenericModel<?> model = selectedItem.getValue();
 
-					if (model instanceof TiffDataModel) {
-						// Display informations relative to TiffData
-						populateTiffDataInformations((TiffDataModel) model);
+			if (model instanceof TiffDataModel) {
+				// Display informations relative to TiffData
+				populateTiffDataInformations((TiffDataModel) model);
 
-					}
+			}
 
-					if (model instanceof ImageModel) {
-						// Clear TiffData informations
-						this.tiffDataTable.getItems().clear();
+			if (model instanceof ImageModel) {
+				// Clear TiffData informations
+				this.tiffDataTable.getItems().clear();
 
-						// Display informations relative to Image
-						populateImageInformations((ImageModel) model);
-					}
+				// Display informations relative to Image
+				populateImageInformations((ImageModel) model);
+			}
 
-					if (syncWithImageBox.isSelected()) {
-						if (model instanceof TiffDataModel) {
-							// Sync the current selected item with image display
-							Map<AxisType, Long> positions = ((TiffDataModel) model).getPosition();
-							OMEUtils.setPosition(this.image, positions, this.convert);
-						}
-					}
-				});
+			if (syncWithImageBox.isSelected()) {
+				if (model instanceof TiffDataModel) {
+					// Sync the current selected item with image display
+					Map<AxisType, Long> positions = ((TiffDataModel) model).getPosition();
+					OMEUtils.setPosition(this.image, positions, this.convert);
+				}
+			}
+		});
 
 	}
 

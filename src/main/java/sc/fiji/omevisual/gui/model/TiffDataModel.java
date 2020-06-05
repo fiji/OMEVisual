@@ -3,6 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package sc.fiji.omevisual.gui.model;
 
 import java.util.ArrayList;
@@ -17,7 +18,6 @@ import net.imagej.axis.AxisType;
 import ome.xml.model.primitives.NonNegativeInteger;
 
 /**
- *
  * @author Hadrien Mary
  */
 public class TiffDataModel extends GenericModel<GenericModel<?>> {
@@ -39,7 +39,9 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
 
 	private final ImageModel imageModel;
 
-	public TiffDataModel(int imageID, int tiffDataID, OMEXMLMetadata md, ImageModel imageModel) {
+	public TiffDataModel(int imageID, int tiffDataID, OMEXMLMetadata md,
+		ImageModel imageModel)
+	{
 		this.imageID = imageID;
 		this.tiffDataID = tiffDataID;
 		this.c = md.getTiffDataFirstC(imageID, tiffDataID);
@@ -60,16 +62,20 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
 				this.dt = md.getPlaneDeltaT(imageID, tiffDataID).value().floatValue();
 			}
 			if (md.getPlaneExposureTime(imageID, tiffDataID) != null) {
-				this.exposureTime = md.getPlaneExposureTime(imageID, tiffDataID).value().floatValue();
+				this.exposureTime = md.getPlaneExposureTime(imageID, tiffDataID).value()
+					.floatValue();
 			}
 			if (md.getPlanePositionX(imageID, tiffDataID) != null) {
-				this.posX = md.getPlanePositionX(imageID, tiffDataID).value().floatValue();
+				this.posX = md.getPlanePositionX(imageID, tiffDataID).value()
+					.floatValue();
 			}
 			if (md.getPlanePositionY(imageID, tiffDataID) != null) {
-				this.posY = md.getPlanePositionY(imageID, tiffDataID).value().floatValue();
+				this.posY = md.getPlanePositionY(imageID, tiffDataID).value()
+					.floatValue();
 			}
 			if (md.getPlanePositionZ(imageID, tiffDataID) != null) {
-				this.posZ = md.getPlanePositionZ(imageID, tiffDataID).value().floatValue();
+				this.posZ = md.getPlanePositionZ(imageID, tiffDataID).value()
+					.floatValue();
 			}
 		}
 
@@ -98,31 +104,36 @@ public class TiffDataModel extends GenericModel<GenericModel<?>> {
 
 		if (this.dt >= 0) {
 			rows.add(Arrays.asList("dt", this.dt + " ms"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("dt", ""));
 		}
 
 		if (this.exposureTime >= 0) {
 			rows.add(Arrays.asList("Exposure time", this.exposureTime + " ms"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("Exposure time", ""));
 		}
 
 		if (this.posX >= 0) {
 			rows.add(Arrays.asList("Position X", this.posX + " µm"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("Position X", ""));
 		}
 
 		if (this.posY >= 0) {
 			rows.add(Arrays.asList("Position Y", this.posY + " µm"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("Position Y", ""));
 		}
 
 		if (this.posZ >= 0) {
 			rows.add(Arrays.asList("Position Z", this.posZ + " µm"));
-		} else {
+		}
+		else {
 			rows.add(Arrays.asList("Position Z", ""));
 		}
 
