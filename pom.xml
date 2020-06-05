@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
@@ -10,6 +9,7 @@
 		<relativePath />
 	</parent>
 
+	<groupId>sc.fiji</groupId>
 	<artifactId>OMEVisual</artifactId>
 	<version>1.1.3-SNAPSHOT</version>
 
@@ -17,12 +17,10 @@
 	<description>A Fiji plugin to easily visualize OME metadata.</description>
 	<url>https://github.com/hadim/OMEVisual</url>
 	<inceptionYear>2016</inceptionYear>
-
 	<organization>
 		<name>Fiji</name>
 		<url>https://fiji.sc/</url>
 	</organization>
-
 	<licenses>
 		<license>
 			<name>MIT License</name>
@@ -55,12 +53,27 @@
 		</contributor>
 	</contributors>
 
+	<mailingLists>
+		<mailingList>
+			<name>Image.sc Forum</name>
+			<archive>https://forum.image.sc/tags/omevisual</archive>
+		</mailingList>
+	</mailingLists>
+
 	<scm>
 		<connection>scm:git:git://github.com/hadim/OMEVisual</connection>
 		<developerConnection>scm:git:git@github.com:hadim/OMEVisual</developerConnection>
 		<tag>HEAD</tag>
 		<url>https://github.com/hadim/OMEVisual</url>
 	</scm>
+	<issueManagement>
+		<system>GitHub Issues</system>
+		<url>https://github.com/hadim/OMEVisual/issues</url>
+	</issueManagement>
+	<ciManagement>
+		<system>Travis CI</system>
+		<url>https://travis-ci.org/hadim/OMEVisual</url>
+	</ciManagement>
 
 	<properties>
 		<package-name>OMEVisual</package-name>
@@ -70,23 +83,6 @@
 		<!-- NB: Deploy releases to the SciJava Maven repository. -->
 		<releaseProfiles>deploy-to-scijava</releaseProfiles>
 	</properties>
-
-	<mailingLists>
-		<mailingList>
-			<name>Image.sc Forum</name>
-			<archive>https://forum.image.sc/tags/omevisual</archive>
-		</mailingList>
-	</mailingLists>
-
-	<ciManagement>
-		<system>Travis CI</system>
-		<url>https://travis-ci.org/hadim/OMEVisual</url>
-	</ciManagement>
-
-	<issueManagement>
-		<system>GitHub Issues</system>
-		<url>https://github.com/hadim/OMEVisual/issues</url>
-	</issueManagement>
 
 	<dependencies>
 		<!--ImageJ -->
@@ -143,6 +139,4 @@
 			<url>https://maven.scijava.org/content/groups/public</url>
 		</repository>
 	</repositories>
-
-	<groupId>sc.fiji</groupId>
 </project>
