@@ -84,7 +84,7 @@
 	</ciManagement>
 
 	<properties>
-		<package-name>OMEVisual</package-name>
+		<package-name>sc.fiji.omevisual</package-name>
 		<license.licenseName>mit</license.licenseName>
 		<license.copyrightOwners>Hadrien Mary</license.copyrightOwners>
 
