@@ -1,4 +1,4 @@
-[![](https://travis-ci.com/fiji/OMEVisual.svg?branch=master)](https://travis-ci.com/fiji/OMEVisual)
+[![](https://github.com/fiji/OMEVisual/actions/workflows/build-main.yml/badge.svg)](https://github.com/fiji/OMEVisual/actions/workflows/build-main.yml)
 
 # OMEVisual
 
