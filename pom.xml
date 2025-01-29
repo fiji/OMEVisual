@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.scijava</groupId>
 		<artifactId>pom-scijava</artifactId>
-		<version>29.0.0-beta-2</version>
+		<version>40.0.0</version>
 		<relativePath />
 	</parent>
 
@@ -31,23 +31,9 @@
 
 	<developers>
 		<developer>
-			<id>hadim</id>
-			<name>Hadrien Mary</name>
-			<url>https://imagej.net/User:Hadim</url>
-			<roles>
-				<role>founder</role>
-				<role>lead</role>
-				<role>developer</role>
-				<role>debugger</role>
-				<role>reviewer</role>
-				<role>support</role>
-				<role>maintainer</role>
-			</roles>
-		</developer>
-		<developer>
 			<id>ctrueden</id>
 			<name>Curtis Rueden</name>
-			<url>https://imagej.net/User:Rueden</url>
+			<url>https://imagej.net/people/ctrueden</url>
 			<roles>
 				<role>maintainer</role>
 			</roles>
@@ -55,8 +41,14 @@
 	</developers>
 	<contributors>
 		<contributor>
+			<name>Hadrien Mary</name>
+			<url>https://imagej.net/people/hadim</url>
+			<roles><role>founder</role></roles>
+			<properties><id>hadim</id></properties>
+		</contributor>
+		<contributor>
 			<name>Mark Hiner</name>
-			<url>https://imagej.net/User:Hinerm</url>
+			<url>https://imagej.net/people/hinerm</url>
 			<properties><id>hinerm</id></properties>
 		</contributor>
 	</contributors>
@@ -64,7 +56,7 @@
 	<mailingLists>
 		<mailingList>
 			<name>Image.sc Forum</name>
-			<archive>https://forum.image.sc/tags/omevisual</archive>
+			<archive>https://forum.image.sc/tag/fiji</archive>
 		</mailingList>
 	</mailingLists>
 
@@ -130,7 +122,7 @@
 			<scope>test</scope>
 		</dependency>
 
-		<!-- Enable IJ1 interface at runtime -->
+		<!-- Enable ImageJ 1.x interface at runtime -->
 		<dependency>
 			<groupId>net.imagej</groupId>
 			<artifactId>imagej-legacy</artifactId>
